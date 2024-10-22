@@ -1,0 +1,16 @@
+{
+  "name": "@streamweaverio/node-protos",
+  "version": "0.0.0",
+  "description": "Proto buf for StreamWeaver",
+  "main": "./dist/broker_grpc_pb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/streamweaverio/node-protos"
+  },
+  "author": "Patrick Foh <patrickfoh@gmail.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "types": "./dist/broker_grpc_pb.d.ts"
+}
