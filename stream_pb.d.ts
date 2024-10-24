@@ -128,11 +128,8 @@ export namespace GetStreamRequest {
 }
 
 export class GetStreamResponse extends jspb.Message { 
-
-    hasName(): boolean;
-    clearName(): void;
-    getName(): Stream | undefined;
-    setName(value?: Stream): GetStreamResponse;
+    getName(): string;
+    setName(value: string): GetStreamResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetStreamResponse.AsObject;
@@ -146,7 +143,7 @@ export class GetStreamResponse extends jspb.Message {
 
 export namespace GetStreamResponse {
     export type AsObject = {
-        name?: Stream.AsObject,
+        name: string,
     }
 }
 
