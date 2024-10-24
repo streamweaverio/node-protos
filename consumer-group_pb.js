@@ -766,7 +766,8 @@ proto.broker.AddConsumerResponse.prototype.toObject = function(opt_includeInstan
  */
 proto.broker.AddConsumerResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    status: jspb.Message.getFieldWithDefault(msg, 1, "")
+    status: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -807,6 +808,10 @@ proto.broker.AddConsumerResponse.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.setStatus(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -843,6 +848,13 @@ proto.broker.AddConsumerResponse.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -861,6 +873,24 @@ proto.broker.AddConsumerResponse.prototype.getStatus = function() {
  */
 proto.broker.AddConsumerResponse.prototype.setStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string error_message = 2;
+ * @return {string}
+ */
+proto.broker.AddConsumerResponse.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.broker.AddConsumerResponse} returns this
+ */
+proto.broker.AddConsumerResponse.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
