@@ -95,6 +95,8 @@ export namespace CreateConsumerGroupResponse {
 export class AddConsumerResponse extends jspb.Message { 
     getStatus(): string;
     setStatus(value: string): AddConsumerResponse;
+    getErrorMessage(): string;
+    setErrorMessage(value: string): AddConsumerResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AddConsumerResponse.AsObject;
@@ -109,6 +111,7 @@ export class AddConsumerResponse extends jspb.Message {
 export namespace AddConsumerResponse {
     export type AsObject = {
         status: string,
+        errorMessage: string,
     }
 }
 
