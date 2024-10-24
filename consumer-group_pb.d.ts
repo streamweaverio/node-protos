@@ -29,6 +29,32 @@ export namespace CreateConsumerGroupRequest {
     }
 }
 
+export class AddConsumerRequest extends jspb.Message { 
+    getConsumerGroupName(): string;
+    setConsumerGroupName(value: string): AddConsumerRequest;
+    getConsumerName(): string;
+    setConsumerName(value: string): AddConsumerRequest;
+    getStreamName(): string;
+    setStreamName(value: string): AddConsumerRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddConsumerRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: AddConsumerRequest): AddConsumerRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddConsumerRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddConsumerRequest;
+    static deserializeBinaryFromReader(message: AddConsumerRequest, reader: jspb.BinaryReader): AddConsumerRequest;
+}
+
+export namespace AddConsumerRequest {
+    export type AsObject = {
+        consumerGroupName: string,
+        consumerName: string,
+        streamName: string,
+    }
+}
+
 export class ListConsumerGroupsRequest extends jspb.Message { 
     getStreamName(): string;
     setStreamName(value: string): ListConsumerGroupsRequest;
@@ -63,6 +89,26 @@ export class CreateConsumerGroupResponse extends jspb.Message {
 
 export namespace CreateConsumerGroupResponse {
     export type AsObject = {
+    }
+}
+
+export class AddConsumerResponse extends jspb.Message { 
+    getStatus(): string;
+    setStatus(value: string): AddConsumerResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AddConsumerResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: AddConsumerResponse): AddConsumerResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AddConsumerResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AddConsumerResponse;
+    static deserializeBinaryFromReader(message: AddConsumerResponse, reader: jspb.BinaryReader): AddConsumerResponse;
+}
+
+export namespace AddConsumerResponse {
+    export type AsObject = {
+        status: string,
     }
 }
 

@@ -13,6 +13,7 @@ interface IStreamWeaverBrokerService extends grpc.ServiceDefinition<grpc.Untyped
     createStream: IStreamWeaverBrokerService_ICreateStream;
     getStream: IStreamWeaverBrokerService_IGetStream;
     createConsumerGroup: IStreamWeaverBrokerService_ICreateConsumerGroup;
+    addConsumer: IStreamWeaverBrokerService_IAddConsumer;
     listConsumerGroups: IStreamWeaverBrokerService_IListConsumerGroups;
 }
 
@@ -43,6 +44,15 @@ interface IStreamWeaverBrokerService_ICreateConsumerGroup extends grpc.MethodDef
     responseSerialize: grpc.serialize<consumer_group_pb.CreateConsumerGroupResponse>;
     responseDeserialize: grpc.deserialize<consumer_group_pb.CreateConsumerGroupResponse>;
 }
+interface IStreamWeaverBrokerService_IAddConsumer extends grpc.MethodDefinition<consumer_group_pb.AddConsumerRequest, consumer_group_pb.AddConsumerResponse> {
+    path: "/broker.StreamWeaverBroker/AddConsumer";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<consumer_group_pb.AddConsumerRequest>;
+    requestDeserialize: grpc.deserialize<consumer_group_pb.AddConsumerRequest>;
+    responseSerialize: grpc.serialize<consumer_group_pb.AddConsumerResponse>;
+    responseDeserialize: grpc.deserialize<consumer_group_pb.AddConsumerResponse>;
+}
 interface IStreamWeaverBrokerService_IListConsumerGroups extends grpc.MethodDefinition<consumer_group_pb.ListConsumerGroupsRequest, consumer_group_pb.ListConsumerGroupsResponse> {
     path: "/broker.StreamWeaverBroker/ListConsumerGroups";
     requestStream: false;
@@ -59,6 +69,7 @@ export interface IStreamWeaverBrokerServer extends grpc.UntypedServiceImplementa
     createStream: grpc.handleUnaryCall<stream_pb.CreateStreamRequest, stream_pb.CreateStreamResponse>;
     getStream: grpc.handleUnaryCall<stream_pb.GetStreamRequest, stream_pb.GetStreamResponse>;
     createConsumerGroup: grpc.handleUnaryCall<consumer_group_pb.CreateConsumerGroupRequest, consumer_group_pb.CreateConsumerGroupResponse>;
+    addConsumer: grpc.handleUnaryCall<consumer_group_pb.AddConsumerRequest, consumer_group_pb.AddConsumerResponse>;
     listConsumerGroups: grpc.handleUnaryCall<consumer_group_pb.ListConsumerGroupsRequest, consumer_group_pb.ListConsumerGroupsResponse>;
 }
 
@@ -72,6 +83,9 @@ export interface IStreamWeaverBrokerClient {
     createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
     createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
     createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
+    addConsumer(request: consumer_group_pb.AddConsumerRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
+    addConsumer(request: consumer_group_pb.AddConsumerRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
+    addConsumer(request: consumer_group_pb.AddConsumerRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
     listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
     listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
     listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
@@ -88,6 +102,9 @@ export class StreamWeaverBrokerClient extends grpc.Client implements IStreamWeav
     public createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
     public createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
     public createConsumerGroup(request: consumer_group_pb.CreateConsumerGroupRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.CreateConsumerGroupResponse) => void): grpc.ClientUnaryCall;
+    public addConsumer(request: consumer_group_pb.AddConsumerRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
+    public addConsumer(request: consumer_group_pb.AddConsumerRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
+    public addConsumer(request: consumer_group_pb.AddConsumerRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.AddConsumerResponse) => void): grpc.ClientUnaryCall;
     public listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
     public listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
     public listConsumerGroups(request: consumer_group_pb.ListConsumerGroupsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: consumer_group_pb.ListConsumerGroupsResponse) => void): grpc.ClientUnaryCall;
