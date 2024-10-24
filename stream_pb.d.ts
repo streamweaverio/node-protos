@@ -11,6 +11,8 @@ export class StreamRetentionOptions extends jspb.Message {
     setMaxAge(value: string): StreamRetentionOptions;
     getMaxSize(): number;
     setMaxSize(value: number): StreamRetentionOptions;
+    getRetentionPolicy(): StreamRetentionPolicy;
+    setRetentionPolicy(value: StreamRetentionPolicy): StreamRetentionOptions;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): StreamRetentionOptions.AsObject;
@@ -26,14 +28,13 @@ export namespace StreamRetentionOptions {
     export type AsObject = {
         maxAge: string,
         maxSize: number,
+        retentionPolicy: StreamRetentionPolicy,
     }
 }
 
 export class Stream extends jspb.Message { 
     getStreamName(): string;
     setStreamName(value: string): Stream;
-    getRetentionPolicy(): StreamRetentionPolicy;
-    setRetentionPolicy(value: StreamRetentionPolicy): Stream;
 
     hasRetentionOptions(): boolean;
     clearRetentionOptions(): void;
@@ -53,7 +54,6 @@ export class Stream extends jspb.Message {
 export namespace Stream {
     export type AsObject = {
         streamName: string,
-        retentionPolicy: StreamRetentionPolicy,
         retentionOptions?: StreamRetentionOptions.AsObject,
     }
 }
@@ -61,8 +61,6 @@ export namespace Stream {
 export class CreateStreamRequest extends jspb.Message { 
     getStreamName(): string;
     setStreamName(value: string): CreateStreamRequest;
-    getRetentionPolicy(): StreamRetentionPolicy;
-    setRetentionPolicy(value: StreamRetentionPolicy): CreateStreamRequest;
 
     hasRetentionOptions(): boolean;
     clearRetentionOptions(): void;
@@ -82,7 +80,6 @@ export class CreateStreamRequest extends jspb.Message {
 export namespace CreateStreamRequest {
     export type AsObject = {
         streamName: string,
-        retentionPolicy: StreamRetentionPolicy,
         retentionOptions?: StreamRetentionOptions.AsObject,
     }
 }
@@ -131,6 +128,11 @@ export class GetStreamResponse extends jspb.Message {
     getName(): string;
     setName(value: string): GetStreamResponse;
 
+    hasRetentionOptions(): boolean;
+    clearRetentionOptions(): void;
+    getRetentionOptions(): StreamRetentionOptions | undefined;
+    setRetentionOptions(value?: StreamRetentionOptions): GetStreamResponse;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetStreamResponse.AsObject;
     static toObject(includeInstance: boolean, msg: GetStreamResponse): GetStreamResponse.AsObject;
@@ -144,6 +146,7 @@ export class GetStreamResponse extends jspb.Message {
 export namespace GetStreamResponse {
     export type AsObject = {
         name: string,
+        retentionOptions?: StreamRetentionOptions.AsObject,
     }
 }
 

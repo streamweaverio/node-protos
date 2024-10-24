@@ -187,7 +187,8 @@ proto.broker.StreamRetentionOptions.prototype.toObject = function(opt_includeIns
 proto.broker.StreamRetentionOptions.toObject = function(includeInstance, msg) {
   var f, obj = {
     maxAge: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    maxSize: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    maxSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    retentionPolicy: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -232,6 +233,10 @@ proto.broker.StreamRetentionOptions.deserializeBinaryFromReader = function(msg, 
       var value = /** @type {number} */ (reader.readInt64());
       msg.setMaxSize(value);
       break;
+    case 3:
+      var value = /** @type {!proto.broker.StreamRetentionPolicy} */ (reader.readEnum());
+      msg.setRetentionPolicy(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -275,6 +280,13 @@ proto.broker.StreamRetentionOptions.serializeBinaryToWriter = function(message, 
       f
     );
   }
+  f = message.getRetentionPolicy();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -314,6 +326,24 @@ proto.broker.StreamRetentionOptions.prototype.setMaxSize = function(value) {
 };
 
 
+/**
+ * optional StreamRetentionPolicy retention_policy = 3;
+ * @return {!proto.broker.StreamRetentionPolicy}
+ */
+proto.broker.StreamRetentionOptions.prototype.getRetentionPolicy = function() {
+  return /** @type {!proto.broker.StreamRetentionPolicy} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.broker.StreamRetentionPolicy} value
+ * @return {!proto.broker.StreamRetentionOptions} returns this
+ */
+proto.broker.StreamRetentionOptions.prototype.setRetentionPolicy = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
 
 
 
@@ -347,7 +377,6 @@ proto.broker.Stream.prototype.toObject = function(opt_includeInstance) {
 proto.broker.Stream.toObject = function(includeInstance, msg) {
   var f, obj = {
     streamName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    retentionPolicy: jspb.Message.getFieldWithDefault(msg, 2, 0),
     retentionOptions: (f = msg.getRetentionOptions()) && proto.broker.StreamRetentionOptions.toObject(includeInstance, f)
   };
 
@@ -390,10 +419,6 @@ proto.broker.Stream.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStreamName(value);
       break;
     case 2:
-      var value = /** @type {!proto.broker.StreamRetentionPolicy} */ (reader.readEnum());
-      msg.setRetentionPolicy(value);
-      break;
-    case 3:
       var value = new proto.broker.StreamRetentionOptions;
       reader.readMessage(value,proto.broker.StreamRetentionOptions.deserializeBinaryFromReader);
       msg.setRetentionOptions(value);
@@ -434,17 +459,10 @@ proto.broker.Stream.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getRetentionPolicy();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
   f = message.getRetentionOptions();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       proto.broker.StreamRetentionOptions.serializeBinaryToWriter
     );
@@ -471,30 +489,12 @@ proto.broker.Stream.prototype.setStreamName = function(value) {
 
 
 /**
- * optional StreamRetentionPolicy retention_policy = 2;
- * @return {!proto.broker.StreamRetentionPolicy}
- */
-proto.broker.Stream.prototype.getRetentionPolicy = function() {
-  return /** @type {!proto.broker.StreamRetentionPolicy} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {!proto.broker.StreamRetentionPolicy} value
- * @return {!proto.broker.Stream} returns this
- */
-proto.broker.Stream.prototype.setRetentionPolicy = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
-};
-
-
-/**
- * optional StreamRetentionOptions retention_options = 3;
+ * optional StreamRetentionOptions retention_options = 2;
  * @return {?proto.broker.StreamRetentionOptions}
  */
 proto.broker.Stream.prototype.getRetentionOptions = function() {
   return /** @type{?proto.broker.StreamRetentionOptions} */ (
-    jspb.Message.getWrapperField(this, proto.broker.StreamRetentionOptions, 3));
+    jspb.Message.getWrapperField(this, proto.broker.StreamRetentionOptions, 2));
 };
 
 
@@ -503,7 +503,7 @@ proto.broker.Stream.prototype.getRetentionOptions = function() {
  * @return {!proto.broker.Stream} returns this
 */
 proto.broker.Stream.prototype.setRetentionOptions = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -521,7 +521,7 @@ proto.broker.Stream.prototype.clearRetentionOptions = function() {
  * @return {boolean}
  */
 proto.broker.Stream.prototype.hasRetentionOptions = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -558,7 +558,6 @@ proto.broker.CreateStreamRequest.prototype.toObject = function(opt_includeInstan
 proto.broker.CreateStreamRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     streamName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    retentionPolicy: jspb.Message.getFieldWithDefault(msg, 2, 0),
     retentionOptions: (f = msg.getRetentionOptions()) && proto.broker.StreamRetentionOptions.toObject(includeInstance, f)
   };
 
@@ -601,10 +600,6 @@ proto.broker.CreateStreamRequest.deserializeBinaryFromReader = function(msg, rea
       msg.setStreamName(value);
       break;
     case 2:
-      var value = /** @type {!proto.broker.StreamRetentionPolicy} */ (reader.readEnum());
-      msg.setRetentionPolicy(value);
-      break;
-    case 3:
       var value = new proto.broker.StreamRetentionOptions;
       reader.readMessage(value,proto.broker.StreamRetentionOptions.deserializeBinaryFromReader);
       msg.setRetentionOptions(value);
@@ -645,17 +640,10 @@ proto.broker.CreateStreamRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getRetentionPolicy();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
   f = message.getRetentionOptions();
   if (f != null) {
     writer.writeMessage(
-      3,
+      2,
       f,
       proto.broker.StreamRetentionOptions.serializeBinaryToWriter
     );
@@ -682,30 +670,12 @@ proto.broker.CreateStreamRequest.prototype.setStreamName = function(value) {
 
 
 /**
- * optional StreamRetentionPolicy retention_policy = 2;
- * @return {!proto.broker.StreamRetentionPolicy}
- */
-proto.broker.CreateStreamRequest.prototype.getRetentionPolicy = function() {
-  return /** @type {!proto.broker.StreamRetentionPolicy} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {!proto.broker.StreamRetentionPolicy} value
- * @return {!proto.broker.CreateStreamRequest} returns this
- */
-proto.broker.CreateStreamRequest.prototype.setRetentionPolicy = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
-};
-
-
-/**
- * optional StreamRetentionOptions retention_options = 3;
+ * optional StreamRetentionOptions retention_options = 2;
  * @return {?proto.broker.StreamRetentionOptions}
  */
 proto.broker.CreateStreamRequest.prototype.getRetentionOptions = function() {
   return /** @type{?proto.broker.StreamRetentionOptions} */ (
-    jspb.Message.getWrapperField(this, proto.broker.StreamRetentionOptions, 3));
+    jspb.Message.getWrapperField(this, proto.broker.StreamRetentionOptions, 2));
 };
 
 
@@ -714,7 +684,7 @@ proto.broker.CreateStreamRequest.prototype.getRetentionOptions = function() {
  * @return {!proto.broker.CreateStreamRequest} returns this
 */
 proto.broker.CreateStreamRequest.prototype.setRetentionOptions = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -732,7 +702,7 @@ proto.broker.CreateStreamRequest.prototype.clearRetentionOptions = function() {
  * @return {boolean}
  */
 proto.broker.CreateStreamRequest.prototype.hasRetentionOptions = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1028,7 +998,8 @@ proto.broker.GetStreamResponse.prototype.toObject = function(opt_includeInstance
  */
 proto.broker.GetStreamResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    retentionOptions: (f = msg.getRetentionOptions()) && proto.broker.StreamRetentionOptions.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1069,6 +1040,11 @@ proto.broker.GetStreamResponse.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
+    case 2:
+      var value = new proto.broker.StreamRetentionOptions;
+      reader.readMessage(value,proto.broker.StreamRetentionOptions.deserializeBinaryFromReader);
+      msg.setRetentionOptions(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1105,6 +1081,14 @@ proto.broker.GetStreamResponse.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getRetentionOptions();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.broker.StreamRetentionOptions.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1123,6 +1107,43 @@ proto.broker.GetStreamResponse.prototype.getName = function() {
  */
 proto.broker.GetStreamResponse.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional StreamRetentionOptions retention_options = 2;
+ * @return {?proto.broker.StreamRetentionOptions}
+ */
+proto.broker.GetStreamResponse.prototype.getRetentionOptions = function() {
+  return /** @type{?proto.broker.StreamRetentionOptions} */ (
+    jspb.Message.getWrapperField(this, proto.broker.StreamRetentionOptions, 2));
+};
+
+
+/**
+ * @param {?proto.broker.StreamRetentionOptions|undefined} value
+ * @return {!proto.broker.GetStreamResponse} returns this
+*/
+proto.broker.GetStreamResponse.prototype.setRetentionOptions = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.broker.GetStreamResponse} returns this
+ */
+proto.broker.GetStreamResponse.prototype.clearRetentionOptions = function() {
+  return this.setRetentionOptions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.broker.GetStreamResponse.prototype.hasRetentionOptions = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
