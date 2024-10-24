@@ -87,6 +87,8 @@ export namespace CreateStreamRequest {
 export class CreateStreamResponse extends jspb.Message { 
     getStatus(): string;
     setStatus(value: string): CreateStreamResponse;
+    getErrorMessage(): string;
+    setErrorMessage(value: string): CreateStreamResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateStreamResponse.AsObject;
@@ -101,6 +103,7 @@ export class CreateStreamResponse extends jspb.Message {
 export namespace CreateStreamResponse {
     export type AsObject = {
         status: string,
+        errorMessage: string,
     }
 }
 
