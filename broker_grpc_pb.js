@@ -117,7 +117,8 @@ function deserialize_broker_ListConsumerGroupsResponse(buffer_arg) {
 
 
 var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
-  createStream: {
+  // Create a new stream
+createStream: {
     path: '/broker.StreamWeaverBroker/CreateStream',
     requestStream: false,
     responseStream: false,
@@ -128,7 +129,8 @@ var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
     responseSerialize: serialize_broker_CreateStreamResponse,
     responseDeserialize: deserialize_broker_CreateStreamResponse,
   },
-  getStream: {
+  // Get a stream by name
+getStream: {
     path: '/broker.StreamWeaverBroker/GetStream',
     requestStream: false,
     responseStream: false,
@@ -139,7 +141,8 @@ var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
     responseSerialize: serialize_broker_GetStreamResponse,
     responseDeserialize: deserialize_broker_GetStreamResponse,
   },
-  createConsumerGroup: {
+  // Create a new consumer group
+createConsumerGroup: {
     path: '/broker.StreamWeaverBroker/CreateConsumerGroup',
     requestStream: false,
     responseStream: false,
@@ -150,7 +153,8 @@ var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
     responseSerialize: serialize_broker_CreateConsumerGroupResponse,
     responseDeserialize: deserialize_broker_CreateConsumerGroupResponse,
   },
-  addConsumer: {
+  // Add a consumer to a consumer group
+addConsumer: {
     path: '/broker.StreamWeaverBroker/AddConsumer',
     requestStream: false,
     responseStream: false,
@@ -161,7 +165,8 @@ var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
     responseSerialize: serialize_broker_AddConsumerResponse,
     responseDeserialize: deserialize_broker_AddConsumerResponse,
   },
-  listConsumerGroups: {
+  // List consumer groups for a stream
+listConsumerGroups: {
     path: '/broker.StreamWeaverBroker/ListConsumerGroups',
     requestStream: false,
     responseStream: false,

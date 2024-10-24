@@ -738,7 +738,8 @@ proto.broker.CreateStreamResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.broker.CreateStreamResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    status: jspb.Message.getFieldWithDefault(msg, 1, "")
+    status: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    errorMessage: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -779,6 +780,10 @@ proto.broker.CreateStreamResponse.deserializeBinaryFromReader = function(msg, re
       var value = /** @type {string} */ (reader.readString());
       msg.setStatus(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setErrorMessage(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -815,6 +820,13 @@ proto.broker.CreateStreamResponse.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getErrorMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -833,6 +845,24 @@ proto.broker.CreateStreamResponse.prototype.getStatus = function() {
  */
 proto.broker.CreateStreamResponse.prototype.setStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string error_message = 2;
+ * @return {string}
+ */
+proto.broker.CreateStreamResponse.prototype.getErrorMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.broker.CreateStreamResponse} returns this
+ */
+proto.broker.CreateStreamResponse.prototype.setErrorMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
