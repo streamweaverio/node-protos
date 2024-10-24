@@ -1,16 +1,18 @@
 {
-  "name": "@streamweaverio/node-protos",
-  "version": "0.0.0",
-  "description": "Proto buf for StreamWeaver",
-  "main": "./dist/broker_grpc_pb.js",
+  "name": "@streamweaverio/protos",
+  "version": "1.0.0",
+  "main": "broker_grpc_pb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com/streamweaverio/node-protos"
-  },
-  "author": "Patrick Foh <patrickfoh@gmail.com>",
-  "license": "SEE LICENSE IN LICENSE",
-  "types": "./dist/broker_grpc_pb.d.ts"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "types": "./broker_grpc_pb.d.ts",
+  "description": "",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
+    "google-protobuf": "^3.21.4",
+    "grpc": "^1.24.11"
+  }
 }
