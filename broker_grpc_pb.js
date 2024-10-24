@@ -5,6 +5,28 @@ var grpc = require('@grpc/grpc-js');
 var stream_pb = require('./stream_pb.js');
 var consumer$group_pb = require('./consumer-group_pb.js');
 
+function serialize_broker_AddConsumerRequest(arg) {
+  if (!(arg instanceof consumer$group_pb.AddConsumerRequest)) {
+    throw new Error('Expected argument of type broker.AddConsumerRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_broker_AddConsumerRequest(buffer_arg) {
+  return consumer$group_pb.AddConsumerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_broker_AddConsumerResponse(arg) {
+  if (!(arg instanceof consumer$group_pb.AddConsumerResponse)) {
+    throw new Error('Expected argument of type broker.AddConsumerResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_broker_AddConsumerResponse(buffer_arg) {
+  return consumer$group_pb.AddConsumerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_broker_CreateConsumerGroupRequest(arg) {
   if (!(arg instanceof consumer$group_pb.CreateConsumerGroupRequest)) {
     throw new Error('Expected argument of type broker.CreateConsumerGroupRequest');
@@ -127,6 +149,17 @@ var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
     requestDeserialize: deserialize_broker_CreateConsumerGroupRequest,
     responseSerialize: serialize_broker_CreateConsumerGroupResponse,
     responseDeserialize: deserialize_broker_CreateConsumerGroupResponse,
+  },
+  addConsumer: {
+    path: '/broker.StreamWeaverBroker/AddConsumer',
+    requestStream: false,
+    responseStream: false,
+    requestType: consumer$group_pb.AddConsumerRequest,
+    responseType: consumer$group_pb.AddConsumerResponse,
+    requestSerialize: serialize_broker_AddConsumerRequest,
+    requestDeserialize: deserialize_broker_AddConsumerRequest,
+    responseSerialize: serialize_broker_AddConsumerResponse,
+    responseDeserialize: deserialize_broker_AddConsumerResponse,
   },
   listConsumerGroups: {
     path: '/broker.StreamWeaverBroker/ListConsumerGroups',
