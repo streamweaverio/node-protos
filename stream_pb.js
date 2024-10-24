@@ -1028,7 +1028,7 @@ proto.broker.GetStreamResponse.prototype.toObject = function(opt_includeInstance
  */
 proto.broker.GetStreamResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: (f = msg.getName()) && proto.broker.Stream.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1066,8 +1066,7 @@ proto.broker.GetStreamResponse.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.broker.Stream;
-      reader.readMessage(value,proto.broker.Stream.deserializeBinaryFromReader);
+      var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
     default:
@@ -1100,50 +1099,30 @@ proto.broker.GetStreamResponse.prototype.serializeBinary = function() {
 proto.broker.GetStreamResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
-  if (f != null) {
-    writer.writeMessage(
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      proto.broker.Stream.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * optional Stream name = 1;
- * @return {?proto.broker.Stream}
+ * optional string name = 1;
+ * @return {string}
  */
 proto.broker.GetStreamResponse.prototype.getName = function() {
-  return /** @type{?proto.broker.Stream} */ (
-    jspb.Message.getWrapperField(this, proto.broker.Stream, 1));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.broker.Stream|undefined} value
+ * @param {string} value
  * @return {!proto.broker.GetStreamResponse} returns this
-*/
+ */
 proto.broker.GetStreamResponse.prototype.setName = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.broker.GetStreamResponse} returns this
- */
-proto.broker.GetStreamResponse.prototype.clearName = function() {
-  return this.setName(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.broker.GetStreamResponse.prototype.hasName = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
