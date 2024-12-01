@@ -115,6 +115,28 @@ function deserialize_broker_ListConsumerGroupsResponse(buffer_arg) {
   return consumer$group_pb.ListConsumerGroupsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_broker_PublishRequest(arg) {
+  if (!(arg instanceof stream_pb.PublishRequest)) {
+    throw new Error('Expected argument of type broker.PublishRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_broker_PublishRequest(buffer_arg) {
+  return stream_pb.PublishRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_broker_PublishResponse(arg) {
+  if (!(arg instanceof stream_pb.PublishResponse)) {
+    throw new Error('Expected argument of type broker.PublishResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_broker_PublishResponse(buffer_arg) {
+  return stream_pb.PublishResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var StreamWeaverBrokerService = exports.StreamWeaverBrokerService = {
   // Create a new stream
@@ -176,6 +198,18 @@ listConsumerGroups: {
     requestDeserialize: deserialize_broker_ListConsumerGroupsRequest,
     responseSerialize: serialize_broker_ListConsumerGroupsResponse,
     responseDeserialize: deserialize_broker_ListConsumerGroupsResponse,
+  },
+  // Publish messages to a stream
+publish: {
+    path: '/broker.StreamWeaverBroker/Publish',
+    requestStream: false,
+    responseStream: false,
+    requestType: stream_pb.PublishRequest,
+    responseType: stream_pb.PublishResponse,
+    requestSerialize: serialize_broker_PublishRequest,
+    requestDeserialize: deserialize_broker_PublishRequest,
+    responseSerialize: serialize_broker_PublishResponse,
+    responseDeserialize: deserialize_broker_PublishResponse,
   },
 };
 
